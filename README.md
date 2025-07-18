@@ -56,7 +56,7 @@ GenLegal-AI is a legal question-answering application leveraging modern AI and w
 
 ## Assumptions & Limitations
 
-- The system relies on the Google Gemini API for all legal Q&A responses; no local or fine-tuned models are used.
+- The system relies on the Google Gemini API for all legal Q&A responses.
 - Answers are generated based on the Gemini model’s general knowledge and may not always be fully accurate or up-to-date with the latest legal developments.
 - The model is prompted to focus on Indian law, but its responses may sometimes lack jurisdictional specificity or legal nuance.
 - The system does not provide professional legal advice; it is for informational purposes only.
