@@ -13,7 +13,7 @@ GenLegal-AI is a legal question-answering application leveraging modern AI and w
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/BeingMirage/GenLegal-AI.git
    cd GenLegal-AI
    ```
 
