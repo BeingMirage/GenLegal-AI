@@ -6,8 +6,8 @@ GenLegal-AI is a legal question-answering application leveraging modern AI and w
 
 - **Frontend:** React (TypeScript, Vite)
 - **Backend:** Python (Flask)
-- **AI Model:** Fine-tuned FLAN-T5 (with LoRA adapters)
-- **Other:** Node.js (for frontend tooling), PyTorch/Transformers (for model training/inference)
+- **AI Model/API:** Google Gemini API (gemini-2.5-flash)
+- **Other:** Node.js (for frontend tooling)
 
 ## How to Run the Project Locally
 
@@ -21,12 +21,16 @@ GenLegal-AI is a legal question-answering application leveraging modern AI and w
    - Create and activate a Python virtual environment:
      ```bash
      python -m venv venv
-     source venv/bin/activate  # On Windows: venv\Scripts\activate
+     # On Unix/macOS:
+     source venv/bin/activate
+     # On Windows:
+     venv\Scripts\activate
      ```
    - Install dependencies:
      ```bash
      pip install -r requirements.txt
      ```
+   - Set your Google Gemini API key in the backend (currently hardcoded in `backend/app.py` for demo purposes).
    - Start the backend server:
      ```bash
      cd backend
@@ -47,17 +51,17 @@ GenLegal-AI is a legal question-answering application leveraging modern AI and w
 
 ## API Used
 
-- **Model API:** The backend serves a fine-tuned FLAN-T5 model (using LoRA adapters) for legal question answering. No external APIs are used for inference; all model logic runs locally.
-- **Why FLAN-T5?** FLAN-T5 is a powerful, instruction-tuned language model, and LoRA adapters allow efficient fine-tuning for domain-specific tasks (like legal Q&A) without retraining the entire model.
+- **Google Gemini API:** The backend uses the Google Gemini API (model: `gemini-2.5-flash`) to generate answers to legal questions. All inference is performed via calls to this external API.
+- **Why Gemini?** Gemini is a state-of-the-art generative language model capable of providing detailed, context-aware answers. Using Gemini allows leveraging powerful language understanding without the need for local model hosting or fine-tuning.
 
 ## Assumptions & Limitations
 
-- The legal AI model is trained on a limited set of legal Q&A data (e.g., Indian law datasets like IPC, CrPC, Constitution).
-- The model may not generalize to all legal domains or jurisdictions.
-- The system does not provide legal advice; it is for informational purposes only.
-- Model inference may require a GPU for reasonable performance.
-- The frontend and backend must be run separately in development.
+- The system relies on the Google Gemini API for all legal Q&A responses; no local or fine-tuned models are used.
+- Answers are generated based on the Gemini model’s general knowledge and may not always be fully accurate or up-to-date with the latest legal developments.
+- The model is prompted to focus on Indian law, but its responses may sometimes lack jurisdictional specificity or legal nuance.
+- The system does not provide professional legal advice; it is for informational purposes only.
+- Requires a valid Google Gemini API key and internet connectivity for backend operation.
 
 ---
 
-Feel free to modify this README to better fit your deployment or add more details as needed!
+Feel free to further customize this README as your project evolves!
