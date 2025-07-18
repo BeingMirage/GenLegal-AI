@@ -9,3 +9,4 @@ datasets
 peft
 bitsandbytes
 scipy
+google.generativeai
