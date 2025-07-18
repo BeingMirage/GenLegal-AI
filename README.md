@@ -63,5 +63,3 @@ GenLegal-AI is a legal question-answering application leveraging modern AI and w
 - Requires a valid Google Gemini API key and internet connectivity for backend operation.
 
 ---
-
-Feel free to further customize this README as your project evolves!
