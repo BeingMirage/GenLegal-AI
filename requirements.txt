@@ -1,0 +1,11 @@
+flask
+flask-cors
+transformers
+torch
+pdfplumber
+accelerate
+python-dotenv
+datasets
+peft
+bitsandbytes
+scipy
