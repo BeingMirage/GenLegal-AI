@@ -13,6 +13,7 @@
   background-color: #171717;
   padding: 32px 20px;
   border-right: 1px solid #3c4043;
+  flex-shrink: 0;
 }
 
 .title {
@@ -33,128 +34,36 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .main-area h1 {
   font-size: 32px;
   color: #8ab4f8;
   margin-bottom: 36px;
+  margin-top: 20px;
 }
 
 .response-box {
   white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   padding: 20px;
   background-color: #303134;
   border-radius: 12px;
   max-width: 700px;
-  min-height: 150px;
-  margin-bottom: 100px;
   width: 100%;
+  min-height: 150px;
+  margin-bottom: 120px;
   border: 1px solid #3c4043;
-}
-
-.input-bar {
-  position: fixed;
-  bottom: 24px;
-  left: 260px;
-  right: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.input-bar input {
-  width: 70%;
-  max-width: 700px;
-  padding: 16px;
-  font-size: 16px;
-  background-color: #303134;
-  color: #e8eaed;
-  border: 1px solid #5f6368;
-  border-radius: 50px;
-  outline: none;
-  padding-right: 64px;
-}
-
-.input-bar button {
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #8ab4f8;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.pdf-upload-btn {
-  position: absolute;
-  right: 100px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #8ab4f8;
-  cursor: pointer;
-  padding: 4px 8px;
-}
-/* App.css */
-
-.genlegal-app {
-  display: flex;
-  height: 100vh;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #202124;
-  color: #e8eaed;
-}
-
-.info-panel {
-  width: 220px;
-  background-color: #171717;
-  padding: 32px 20px;
-  border-right: 1px solid #3c4043;
-}
-
-.title {
-  font-size: 24px;
-  color: #8ab4f8;
-  margin-bottom: 16px;
-}
-
-.description {
+  line-height: 1.6;
   font-size: 14px;
-  color: #bdc1c6;
-  line-height: 1.5;
-}
-
-.main-area {
   flex-grow: 1;
-  position: relative;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.main-area h1 {
-  font-size: 32px;
-  color: #8ab4f8;
-  margin-bottom: 36px;
-}
-
-.response-box {
-  white-space: pre-wrap;
-  padding: 20px;
-  background-color: #303134;
-  border-radius: 12px;
-  max-width: 700px;
-  min-height: 150px;
-  margin-bottom: 100px;
-  width: 100%;
-  border: 1px solid #3c4043;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
 }
 
 .input-bar {
@@ -165,6 +74,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 
 .input-bar input {
@@ -178,6 +88,11 @@
   border-radius: 50px;
   outline: none;
   padding-right: 64px;
+  transition: border-color 0.2s ease;
+}
+
+.input-bar input:focus {
+  border-color: #8ab4f8;
 }
 
 .input-bar button {
@@ -190,6 +105,11 @@
   color: #8ab4f8;
   font-size: 20px;
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.input-bar button:hover {
+  color: #a8c7fa;
 }
 
 .pdf-upload-btn {
@@ -201,208 +121,86 @@
   color: #8ab4f8;
   cursor: pointer;
   padding: 4px 8px;
+  transition: color 0.2s ease;
 }
-/* App.css */
 
-.genlegal-app {
+.pdf-upload-btn:hover {
+  color: #a8c7fa;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .genlegal-app {
+    flex-direction: column;
+  }
+  
+  .info-panel {
+    width: 100%;
+    padding: 20px;
+    border-right: none;
+    border-bottom: 1px solid #3c4043;
+  }
+  
+  .main-area {
+    padding: 20px;
+  }
+  
+  .input-bar {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  .input-bar input {
+    width: 100%;
+    padding-right: 100px;
+  }
+  
+  .response-box {
+    max-height: calc(100vh - 250px);
+    margin-bottom: 100px;
+  }
+}
+
+/* Scrollbar styling */
+.response-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.response-box::-webkit-scrollbar-track {
+  background: #202124;
+  border-radius: 4px;
+}
+
+.response-box::-webkit-scrollbar-thumb {
+  background: #5f6368;
+  border-radius: 4px;
+}
+
+.response-box::-webkit-scrollbar-thumb:hover {
+  background: #8ab4f8;
+}
+
+/* Loading state */
+.response-box.loading {
   display: flex;
-  height: 100vh;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #202124;
-  color: #e8eaed;
-}
-
-.info-panel {
-  width: 220px;
-  background-color: #171717;
-  padding: 32px 20px;
-  border-right: 1px solid #3c4043;
-}
-
-.title {
-  font-size: 24px;
-  color: #8ab4f8;
-  margin-bottom: 16px;
-}
-
-.description {
-  font-size: 14px;
-  color: #bdc1c6;
-  line-height: 1.5;
-}
-
-.main-area {
-  flex-grow: 1;
-  position: relative;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
-
-.main-area h1 {
-  font-size: 32px;
-  color: #8ab4f8;
-  margin-bottom: 36px;
-}
-
-.response-box {
-  white-space: pre-wrap;
-  padding: 20px;
-  background-color: #303134;
-  border-radius: 12px;
-  max-width: 700px;
-  min-height: 150px;
-  margin-bottom: 100px;
-  width: 100%;
-  border: 1px solid #3c4043;
-}
-
-.input-bar {
-  position: fixed;
-  bottom: 24px;
-  left: 260px;
-  right: 40px;
-  display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.input-bar input {
-  width: 70%;
-  max-width: 700px;
-  padding: 16px;
-  font-size: 16px;
-  background-color: #303134;
-  color: #e8eaed;
-  border: 1px solid #5f6368;
-  border-radius: 50px;
-  outline: none;
-  padding-right: 64px;
-}
-
-.input-bar button {
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
   color: #8ab4f8;
-  font-size: 20px;
-  cursor: pointer;
 }
 
-.pdf-upload-btn {
-  position: absolute;
-  right: 100px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #8ab4f8;
-  cursor: pointer;
-  padding: 4px 8px;
-}
-/* App.css */
-
-.genlegal-app {
-  display: flex;
-  height: 100vh;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #202124;
-  color: #e8eaed;
+.response-box.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #8ab4f8;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
 }
 
-.info-panel {
-  width: 220px;
-  background-color: #171717;
-  padding: 32px 20px;
-  border-right: 1px solid #3c4043;
-}
-
-.title {
-  font-size: 24px;
-  color: #8ab4f8;
-  margin-bottom: 16px;
-}
-
-.description {
-  font-size: 14px;
-  color: #bdc1c6;
-  line-height: 1.5;
-}
-
-.main-area {
-  flex-grow: 1;
-  position: relative;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.main-area h1 {
-  font-size: 32px;
-  color: #8ab4f8;
-  margin-bottom: 36px;
-}
-
-.response-box {
-  white-space: pre-wrap;
-  padding: 20px;
-  background-color: #303134;
-  border-radius: 12px;
-  max-width: 700px;
-  min-height: 150px;
-  margin-bottom: 100px;
-  width: 100%;
-  border: 1px solid #3c4043;
-}
-
-.input-bar {
-  position: fixed;
-  bottom: 24px;
-  left: 260px;
-  right: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.input-bar input {
-  width: 70%;
-  max-width: 700px;
-  padding: 16px;
-  font-size: 16px;
-  background-color: #303134;
-  color: #e8eaed;
-  border: 1px solid #5f6368;
-  border-radius: 50px;
-  outline: none;
-  padding-right: 64px;
-}
-
-.input-bar button {
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #8ab4f8;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.pdf-upload-btn {
-  position: absolute;
-  right: 100px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #8ab4f8;
-  cursor: pointer;
-  padding: 4px 8px;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
